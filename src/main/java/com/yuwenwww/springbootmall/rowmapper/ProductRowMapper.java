@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class ProductRowMapper implements RowMapper<Product> {
     @Override
@@ -24,8 +25,20 @@ public class ProductRowMapper implements RowMapper<Product> {
         product.setPrice(rs.getInt("price"));
         product.setStock(rs.getInt("stock"));
         product.setDescription(rs.getString("description"));
-        product.setCreatedDate(rs.getDate("created_date"));
-        product.setLastModifiedDate(rs.getDate("last_modified_date"));
+
+// *** 這裡是最關鍵的修改 ***
+        // 從資料庫讀取 Timestamp
+        Timestamp createdTimestamp = rs.getTimestamp("created_date");
+        Timestamp lastModifiedTimestamp = rs.getTimestamp("last_modified_date");
+
+        // 將 Timestamp 轉換為 LocalDateTime
+        if (createdTimestamp != null) {
+            product.setCreatedDate(createdTimestamp.toLocalDateTime());
+        }
+        if (lastModifiedTimestamp != null) {
+            product.setLastModifiedDate(lastModifiedTimestamp.toLocalDateTime());
+        }
+
 
         return product;
     }

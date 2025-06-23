@@ -1,7 +1,9 @@
 package com.yuwenwww.springbootmall.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.yuwenwww.springbootmall.constant.ProductCategory;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Product {
@@ -12,8 +14,7 @@ public class Product {
     private Integer price;
     private Integer stock;
     private String description;
-    private Date createdDate;
-    private Date lastModifiedDate;
+;
 
     public Integer getProductId() {
         return productId;
@@ -71,19 +72,28 @@ public class Product {
         this.description = description;
     }
 
-    public Date getCreatedDate() {
+    // 為 createdDate 欄位添加 @JsonFormat 註解
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime createdDate;
+
+    // 為 lastModifiedDate 欄位添加 @JsonFormat 註解
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private LocalDateTime lastModifiedDate;
+
+    // Getter 和 Setter 也必須是 LocalDateTime 類型
+    public LocalDateTime getCreatedDate() { // 修改返回類型為 LocalDateTime
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDateTime createdDate) { // 修改參數類型為 LocalDateTime
         this.createdDate = createdDate;
     }
 
-    public Date getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() { // 修改返回類型為 LocalDateTime
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) { // 修改參數類型為 LocalDateTime
         this.lastModifiedDate = lastModifiedDate;
     }
 }
