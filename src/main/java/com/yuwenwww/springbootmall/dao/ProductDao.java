@@ -4,6 +4,8 @@ import com.yuwenwww.springbootmall.dto.ProductRequest;
 import com.yuwenwww.springbootmall.model.Product;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 public interface ProductDao {
     Product getProductById(Integer productId);
@@ -13,4 +15,6 @@ public interface ProductDao {
     void updateProduct(Integer productId, ProductRequest productRequest);
 
     void deleteProductById(Integer productId);
+
+    List<Product> getProducts();
 }
