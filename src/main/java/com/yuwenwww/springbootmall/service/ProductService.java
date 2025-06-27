@@ -1,6 +1,6 @@
 package com.yuwenwww.springbootmall.service;
 
-import com.yuwenwww.springbootmall.constant.ProductCategory;
+import com.yuwenwww.springbootmall.dto.ProductQueryParams;
 import com.yuwenwww.springbootmall.dto.ProductRequest;
 import com.yuwenwww.springbootmall.model.Product;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> getProducts(ProductCategory category, String search);
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
     Product getProductById(Integer productId);
 
