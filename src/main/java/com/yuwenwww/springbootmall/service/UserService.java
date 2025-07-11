@@ -1,5 +1,6 @@
 package com.yuwenwww.springbootmall.service;
 
+import com.yuwenwww.springbootmall.dto.UserLoginRequest;
 import com.yuwenwww.springbootmall.dto.UserRegisterRequest;
 import com.yuwenwww.springbootmall.model.User;
 
@@ -9,4 +10,5 @@ public interface UserService {
 
     Integer register(UserRegisterRequest userRegisterRequest);
 
+    User login(UserLoginRequest userLoginRequest);
 }
