@@ -21,6 +21,8 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+
+
     @Autowired
     private ProductService productService;
 
@@ -102,12 +104,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/products/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId,
-                                                 @RequestBody @Valid ProductRequest productRequest){
+    public ResponseEntity<?> deleteProduct(@PathVariable Integer productId) {
         productService.deleteProductById(productId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-
-
+        return ResponseEntity.noContent().build();  // 回傳 204
     }
 
 }
